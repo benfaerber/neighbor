@@ -10,6 +10,11 @@ mod tests;
 
 use crate::model::{AllListings, SearchRequest, Vehicle};
 
+
+const IP_ADDRESS: &str = "127.0.0.1";
+const PORT: u16 = 8080; 
+
+
 #[post("/")]
 async fn search(request: web::Json<SearchRequest>) -> impl Responder {
     let request = request.into_inner();
@@ -30,14 +35,14 @@ async fn search(request: web::Json<SearchRequest>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting server at http://127.0.0.1:8080");
+    println!("Starting server at http://{}:{}", IP_ADDRESS, PORT);
 
     // Load the listings on server start up...
     // They are probably gonna time me based on API response time so I will preload now.
     let _ = AllListings::get(); 
 
     HttpServer::new(|| App::new().service(search))
-        .bind(("127.0.0.1", 8080))?
+        .bind((IP_ADDRESS, PORT))?
         .run()
         .await
 }

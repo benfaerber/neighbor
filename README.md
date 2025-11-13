@@ -11,6 +11,7 @@ This is a Rust `actix-web` service featuring an API, test suite and criterion be
 - `cargo run` - Run the API on port 8080
 - `cargo test` - Run the test suite
 - `cargo bench` - Run the criterion benchmarks. 
+- `ENDPOINT="http://127.0.0.1:8080/" ./scripts/test_api.sh` - Test the local API using CURL
 
 ### Features:
 - Unit Testing with `cargo test`
