@@ -42,9 +42,6 @@ fn validate_length(length: i32) -> Result<(), ValidationError> {
     if length <= 0 {
         return Err(ValidationError::new("length_must_be_positive"));
     }
-    if length % 10 != 0 {
-        return Err(ValidationError::new("length_must_be_multiple_of_10"));
-    }
     Ok(())
 }
 
@@ -64,7 +61,7 @@ fn validate_total_quantity(vehicles: &[Vehicle]) -> Result<(), ValidationError> 
     Ok(())
 }
 
-/// Note: The endpoint accepts an error.
+/// Note: The endpoint accepts an array.
 /// I flatten it using transparent
 #[derive(Debug, Serialize, Deserialize, Validate)]
 #[serde(transparent)]

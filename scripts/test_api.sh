@@ -15,3 +15,24 @@ curl -X POST "$ENDPOINT" \
             }
         ]' 
 echo ""
+
+# Test 2: 3 vehicles
+echo "Test 2: 3 vehicles"
+echo "-------------------------------------------"
+curl -X POST "$ENDPOINT" \
+    -H "Content-Type: application/json" \
+    -d '[
+            {
+                "length": 10,
+                "quantity": 1
+            },
+            {
+                "length": 20,
+                "quantity": 2
+            },
+            {
+                "length": 25,
+                "quantity": 1
+            }
+        ]'
+echo ""

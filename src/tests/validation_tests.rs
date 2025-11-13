@@ -13,15 +13,6 @@ fn test_valid_vehicle() {
 }
 
 #[test]
-fn test_valid_vehicle_multiple_of_10() {
-    let vehicle = Vehicle {
-        length: 50,
-        quantity: 3,
-    };
-    assert!(vehicle.validate().is_ok());
-}
-
-#[test]
 fn test_invalid_length_negative() {
     let vehicle = Vehicle {
         length: -10,
@@ -34,15 +25,6 @@ fn test_invalid_length_negative() {
 fn test_invalid_length_zero() {
     let vehicle = Vehicle {
         length: 0,
-        quantity: 1,
-    };
-    assert!(vehicle.validate().is_err());
-}
-
-#[test]
-fn test_invalid_length_not_multiple_of_10() {
-    let vehicle = Vehicle {
-        length: 15,
         quantity: 1,
     };
     assert!(vehicle.validate().is_err());
