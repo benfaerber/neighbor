@@ -70,9 +70,9 @@ pub struct SearchRequest {
     pub vehicles: Vec<Vehicle>,
 }
 
-impl SearchRequest {
-    pub fn into_vehicles(self) -> Vec<Vehicle> {
-        self.vehicles
+impl From<SearchRequest> for Vec<Vehicle> {
+    fn from(request: SearchRequest) -> Self {
+        request.vehicles
     }
 }
 

@@ -10,6 +10,8 @@ mod tests;
 
 use model::{AllListings, SearchRequest};
 
+use crate::model::Vehicle;
+
 #[post("/")]
 async fn search(request: web::Json<SearchRequest>) -> impl Responder {
     let request = request.into_inner();
@@ -21,7 +23,7 @@ async fn search(request: web::Json<SearchRequest>) -> impl Responder {
         }));
     }
 
-    let vehicles = request.into_vehicles();
+    let vehicles: Vec<Vehicle> = request.into();
     // Listings already got loaded so they are instant now...
     let listings = AllListings::get(); 
     let results = bin_packing::search_locations(vehicles, listings.inner());
