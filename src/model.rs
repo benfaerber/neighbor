@@ -46,8 +46,8 @@ fn validate_length(length: i32) -> Result<(), ValidationError> {
     Ok(())
 }
 
-/// A single vehicle with an inferred width 
-#[derive(Debug, Serialize, Deserialize, Validate)]
+/// A single vehicle with an inferred width
+#[derive(Debug, Clone, Serialize, Deserialize, Validate)]
 pub struct Vehicle {
     #[validate(custom(function = "validate_length"))]
     pub length: i32,

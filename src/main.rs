@@ -8,9 +8,7 @@ mod model;
 #[cfg(test)]
 mod tests;
 
-use model::{AllListings, SearchRequest};
-
-use crate::model::Vehicle;
+use crate::model::{AllListings, SearchRequest, Vehicle};
 
 #[post("/")]
 async fn search(request: web::Json<SearchRequest>) -> impl Responder {

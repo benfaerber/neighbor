@@ -1,5 +1,15 @@
 # Multi-Vehicle Search Take-Home Challenge
 
+## Ben Faerber Take-Home Challenge
+Here is my submission to the take home challenge.
+This is a Rust `actix-web` service featuring an API, test suite and criterion benchmark.
+
+### Getting Started:
+- `cargo run` - Run the API on port 8080
+- `cargo test` - Run the test suite
+- `cargo bench` - Run the criterion benchmarks. 
+
+
 ## Prompt
 We'd like you to write a search algorithm that will allow renters to find locations where they could store multiple vehicles. Please write and deploy and endpoint that:
 

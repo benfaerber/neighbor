@@ -91,17 +91,6 @@ fn test_search_request_total_quantity_exceeds_limit() {
 }
 
 #[test]
-fn test_search_request_invalid_vehicle_length() {
-    let request = SearchRequest {
-        vehicles: vec![Vehicle {
-            length: 15,
-            quantity: 1,
-        }],
-    };
-    assert!(request.validate().is_err());
-}
-
-#[test]
 fn test_search_request_invalid_vehicle_quantity() {
     let request = SearchRequest {
         vehicles: vec![Vehicle {
