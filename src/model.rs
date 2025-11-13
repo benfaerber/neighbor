@@ -1,45 +1,84 @@
 use lazy_static::lazy_static;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use std::fs;
+use validator::{Validate, ValidationError};
 
 lazy_static! {
-    static ref ALL_LISTINGS: Listings = Listings::load()
+    static ref ALL_LISTINGS: AllListings = AllListings::load() 
         .expect("Missing listings.json config file!");
 }
 
-pub struct Listings {
-    listings: Vec<Listing>,
-}
+pub struct AllListings(Vec<Listing>);
 
-impl Listings {
+impl AllListings {
     pub fn load() -> anyhow::Result<Self> {
         let data = fs::read_to_string("listings.json")?;
         let listings: Vec<Listing> = serde_json::from_str(&data)?;
-        Ok(Listings { listings })
+        Ok(Self(listings))
+    }
+
+    /// Get the singleton
+    pub fn get() -> &'static AllListings {
+        &ALL_LISTINGS
+    }
+
+    pub fn inner(&'static self) -> &'static [Listing] {
+        &self.0
     }
 }
 
-
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Listing {
-    id: String,
-    location_id: String,
+    pub id: String,
+    pub location_id: String,
     /// Multiple of 10
-    length: i32,
+    pub length: i32,
     /// Multiple of 10
-    width: i32,
-    price_in_cents: i32,
+    pub width: i32,
+    pub price_in_cents: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+fn validate_length(length: i32) -> Result<(), ValidationError> {
+    if length <= 0 {
+        return Err(ValidationError::new("length_must_be_positive"));
+    }
+    if length % 10 != 0 {
+        return Err(ValidationError::new("length_must_be_multiple_of_10"));
+    }
+    Ok(())
+}
+
+#[derive(Debug, Serialize, Deserialize, Validate)]
 pub struct Vehicle {
-    length: i32,
-    quantity: i32,
+    #[validate(custom(function = "validate_length"))]
+    pub length: i32,
+    #[validate(range(min = 1))]
+    pub quantity: i32,
+}
+
+fn validate_total_quantity(vehicles: &[Vehicle]) -> Result<(), ValidationError> {
+    let total: i32 = vehicles.iter().map(|v| v.quantity).sum();
+    if total > 5 {
+        return Err(ValidationError::new("total_quantity_exceeds_5"));
+    }
+    Ok(())
+}
+
+#[derive(Debug, Serialize, Deserialize, Validate)]
+pub struct SearchRequest {
+    #[validate(length(min = 1), nested, custom(function = "validate_total_quantity"))]
+    pub vehicles: Vec<Vehicle>,
+}
+
+impl SearchRequest {
+    pub fn into_vehicles(self) -> Vec<Vehicle> {
+        self.vehicles
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PossibleSpace {
-    location_id: String,
-    listings_id: Vec<String>,
-    total_price_in_cents: i32,
+    pub location_id: String,
+    pub listing_ids: Vec<String>,
+    pub total_price_in_cents: i32,
 }
