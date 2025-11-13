@@ -3,7 +3,7 @@
 //! The bin packing problem is an optimization problem where items of different sizes must be
 //! packed into bins or containers with fixed capacity, minimizing the number of bins used.
 //!
-//! For more information, see: <https://en.wikipedia.org/wiki/Bin_packing_problem>
+//! For more information, see: https://en.wikipedia.org/wiki/Bin_packing_problem
 
 use crate::model::{Listing, PossibleSpace, Vehicle};
 use std::collections::HashMap;
