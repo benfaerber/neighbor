@@ -64,7 +64,10 @@ fn validate_total_quantity(vehicles: &[Vehicle]) -> Result<(), ValidationError> 
     Ok(())
 }
 
+/// Note: The endpoint accepts an error.
+/// I flatten it using transparent
 #[derive(Debug, Serialize, Deserialize, Validate)]
+#[serde(transparent)]
 pub struct SearchRequest {
     #[validate(length(min = 1), nested, custom(function = "validate_total_quantity"))]
     pub vehicles: Vec<Vehicle>,
