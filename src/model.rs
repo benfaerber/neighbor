@@ -27,6 +27,7 @@ impl AllListings {
     }
 }
 
+/// A list for a parking location
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Listing {
     pub id: String,
@@ -45,12 +46,17 @@ fn validate_length(length: i32) -> Result<(), ValidationError> {
     Ok(())
 }
 
+/// A single vehicle with an inferred width 
 #[derive(Debug, Serialize, Deserialize, Validate)]
 pub struct Vehicle {
     #[validate(custom(function = "validate_length"))]
     pub length: i32,
     #[validate(range(min = 1))]
     pub quantity: i32,
+}
+
+impl Vehicle {
+    pub const WIDTH: i32 = 10; 
 }
 
 fn validate_total_quantity(vehicles: &[Vehicle]) -> Result<(), ValidationError> {

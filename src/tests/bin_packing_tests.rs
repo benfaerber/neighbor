@@ -204,8 +204,8 @@ fn test_search_locations_groups_by_location() {
 
 #[test]
 fn test_try_fit_vehicles_in_dimension() {
-    assert!(bin_packing::try_fit_vehicles_in_dimension(&[], 20, 30, 10, 10));
-    assert!(!bin_packing::try_fit_vehicles_in_dimension(&[], 40, 30, 10, 10));
-    assert!(bin_packing::try_fit_vehicles_in_dimension(&[15], 15, 20, 20, 10));
-    assert!(!bin_packing::try_fit_vehicles_in_dimension(&[10, 10], 10, 15, 20, 10));
+    assert!(bin_packing::try_fit_vehicles_in_dimension(&[], 20, 30, 10));
+    assert!(!bin_packing::try_fit_vehicles_in_dimension(&[], 40, 30, 10));
+    assert!(bin_packing::try_fit_vehicles_in_dimension(&[15], 15, 20, 20));
+    assert!(!bin_packing::try_fit_vehicles_in_dimension(&[10, 10], 10, 15, 20));
 }

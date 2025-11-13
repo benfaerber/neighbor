@@ -8,9 +8,6 @@
 use crate::model::{Listing, PossibleSpace, Vehicle};
 use std::collections::HashMap;
 
-/// Assume vehicles are 10 feet (see README.md)
-const VEHICLE_WIDTH: i32 = 10;
-
 /// Main search function that finds all possible locations for the given vehicles
 pub fn search_locations(vehicles: Vec<Vehicle>, listings: &[Listing]) -> Vec<PossibleSpace> {
     let expanded_vehicles = expand_vehicles(vehicles);
@@ -176,7 +173,6 @@ fn can_add_vehicle_to_listing(
         new_vehicle_length,
         primary,
         secondary,
-        VEHICLE_WIDTH,
     )
 }
 
@@ -193,13 +189,12 @@ pub fn try_fit_vehicles_in_dimension(
     new_vehicle: i32,
     primary_dim: i32,
     secondary_dim: i32,
-    vehicle_width: i32,
 ) -> bool {
-    if vehicle_width > secondary_dim {
+    if Vehicle::WIDTH > secondary_dim {
         return false;
     }
 
-    let num_rows = secondary_dim / vehicle_width;
+    let num_rows = secondary_dim / Vehicle::WIDTH;
     if num_rows == 0 {
         return false;
     }
