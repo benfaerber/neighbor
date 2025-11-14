@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/benfaerber/neighbor/branch/master/graph/badge.svg)](https://codecov.io/gh/benfaerber/neighbor)
 
 ## Ben Faerber Take-Home Challenge
-Here is my submission to the take home challenge.
+Here is my submission to the take-home challenge.
 This is a Rust `actix-web` service featuring an API, test suite and criterion benchmark.
 
 ### Getting Started:
@@ -31,7 +31,7 @@ Found 5 outliers among 100 measurements (5.00%)
 
 
 ## Prompt
-We'd like you to write a search algorithm that will allow renters to find locations where they could store multiple vehicles. Please write and deploy and endpoint that:
+We'd like you to write a search algorithm that will allow renters to find locations where they could store multiple vehicles. Please write and deploy an endpoint that:
 
 1. Accepts a request like:
     ```bash
