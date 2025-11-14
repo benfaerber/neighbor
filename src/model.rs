@@ -27,7 +27,7 @@ impl AllListings {
     }
 }
 
-/// A list for a parking location
+/// A listing for a parking location
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Listing {
     pub id: String,
