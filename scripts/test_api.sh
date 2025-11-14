@@ -10,7 +10,8 @@ curl -X POST "$ENDPOINT" \
                 "length": 10,
                 "quantity": 1
             }
-        ]' 
+        ]' \
+    -w "\n\nTime: %{time_total}s\n"
 echo ""
 
 # Test 2: 3 vehicles
@@ -31,5 +32,6 @@ curl -X POST "$ENDPOINT" \
                 "length": 25,
                 "quantity": 1
             }
-        ]'
+        ]' \
+    -w "\n\nTime: %{time_total}s\n"
 echo ""
