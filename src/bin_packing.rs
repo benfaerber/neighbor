@@ -73,12 +73,6 @@ pub fn find_cheapest_combination(
     listings: &[Listing],
 ) -> Option<CheapestCombo> {
     let n = listings.len();
-
-    // TODO: It doesn't mention max length validation in the readme?
-    // if n > 20 {
-    //     return None;
-    // }
-
     let mut best: Option<CheapestCombo> = None;
 
     // Use a powerset to try all the different combos
