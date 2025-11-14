@@ -19,6 +19,15 @@ This is a Rust `actix-web` service featuring an API, test suite and criterion be
 - Code Coverage with `codecov.io`
 - CI/CD pipeline with Github Actions
 
+### Benchmark Results:
+```
+api_search/readme_example
+                        time:   [1.4652 ms 1.4661 ms 1.4672 ms]
+                        change: [-1.6017% -1.3524% -1.1324%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 5 outliers among 100 measurements (5.00%)
+```
+
 
 ## Prompt
 We'd like you to write a search algorithm that will allow renters to find locations where they could store multiple vehicles. Please write and deploy and endpoint that:
