@@ -1,4 +1,5 @@
-use actix_web::{post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{post, get, web, App, HttpResponse, HttpServer, Responder};
+use serde::Serialize;
 use serde_json::json;
 use validator::Validate;
 
@@ -14,8 +15,22 @@ use crate::model::{AllListings, SearchRequest, Vehicle};
 const IP_ADDRESS: &str = "127.0.0.1";
 const PORT: u16 = 8080; 
 
+#[derive(Serialize, Debug)]
+struct ServiceHealth {
+    is_healthy: bool,
+    message: String,
+} 
 
-#[post("/")]
+#[get("/")]
+async fn index() -> impl Responder {
+    HttpResponse::Ok().json(ServiceHealth {
+        is_healthy: true,
+        message: "Service is healthy! Send a post request to /search".into()
+    })
+}
+
+
+#[post("/search")]
 async fn search(request: web::Json<SearchRequest>) -> impl Responder {
     let request = request.into_inner();
 
@@ -41,7 +56,7 @@ async fn main() -> std::io::Result<()> {
     // They are probably gonna time me based on API response time so I will preload now.
     let _ = AllListings::get(); 
 
-    HttpServer::new(|| App::new().service(search))
+    HttpServer::new(|| App::new().service(index).service(search))
         .bind((IP_ADDRESS, PORT))?
         .run()
         .await
