@@ -12,7 +12,7 @@ mod tests;
 use crate::model::{AllListings, SearchRequest, Vehicle};
 
 
-const IP_ADDRESS: &str = "127.0.0.1";
+const IP_ADDRESS: &str = "0.0.0.0";
 const PORT: u16 = 8080; 
 
 #[derive(Serialize, Debug)]

@@ -17,4 +17,5 @@ RUN cargo build --release --bin neighbor
 FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 COPY --from=builder /app/target/release/neighbor /usr/local/bin
+COPY --from=builder /app/listings.json /app/listings.json
 ENTRYPOINT ["/usr/local/bin/neighbor"]
