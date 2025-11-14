@@ -2,7 +2,6 @@
 
 [![Tests](https://github.com/benfaerber/neighbor/actions/workflows/test.yml/badge.svg)](https://github.com/benfaerber/neighbor/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/benfaerber/neighbor/branch/master/graph/badge.svg)](https://codecov.io/gh/benfaerber/neighbor)
-[![Fly.io Status](https://img.shields.io/website?url=https%3A%2F%2Fneighbor-wispy-morning-4581.fly.dev&label=fly.io&up_message=online&down_message=offline)](https://neighbor-wispy-morning-4581.fly.dev)
 
 ## Ben Faerber Take-Home Challenge
 Here is my submission to the take home challenge.
