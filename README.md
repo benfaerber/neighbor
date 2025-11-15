@@ -2,8 +2,6 @@
 [![Tests](https://github.com/benfaerber/neighbor/actions/workflows/test.yml/badge.svg)](https://github.com/benfaerber/neighbor/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/benfaerber/neighbor/branch/master/graph/badge.svg)](https://codecov.io/gh/benfaerber/neighbor)
 
-## Ben Faerber Take-Home Challenge
-Here is my submission to the take-home challenge.
 This is a Rust `actix-web` service featuring an API, test suite and criterion benchmark.
 
 ### Getting Started:
